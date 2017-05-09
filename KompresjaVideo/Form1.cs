@@ -72,6 +72,8 @@ namespace KompresjaVideo
 
         private void buttonTranscode_Click(object sender, EventArgs e)
         {
+            textBoxScale.Text.Replace('.', ',');
+            VideoScale = Double.Parse(textBoxScale.Text);
             VlcManager.Export(VCodec, ACodec, VBitRate, ABitRate, FPS, VideoScale);
         }
 
@@ -153,17 +155,7 @@ namespace KompresjaVideo
 
         private void textBoxScale_TextChanged(object sender, EventArgs e)
         {
-            VideoScale = 1;
-
-            if (Double.TryParse(textBoxScale.Text, out double temp))
-            {
-                if (VideoScale > 0 && VideoScale < 10)
-                {
-                    VideoScale = temp;
-                }
-            }
-
-            textBoxScale.Text = VideoScale.ToString();
+            
         }
 
         private void textBoxAudioBitRate_TextChanged(object sender, EventArgs e)
